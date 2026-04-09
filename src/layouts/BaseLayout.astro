@@ -1,0 +1,80 @@
+---
+import '../styles/global.css';
+import GoogleTagManager from '../components/GoogleTagManager.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import SiteModal from '../components/SiteModal.astro';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const {
+	title,
+	description = 'Premium window and door replacement in the Greater Baltimore area. Licensed, insured, free estimates.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="Sage Home" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+		<GoogleTagManager placement="head" />
+		<slot name="head" />
+	</head>
+	<body class="min-h-dvh bg-white antialiased">
+		<GoogleTagManager placement="body" />
+		<Header />
+		<main>
+			<slot />
+		</main>
+		<Footer />
+		<SiteModal />
+		<script is:inline>
+			(function () {
+				var clearSpot = null;
+				function isEstimateHash(href) {
+					if (!href) return false;
+					if (href === '#estimate') return true;
+					try {
+						var u = new URL(href, window.location.href);
+						return u.hash === '#estimate';
+					} catch (err) {
+						return href.slice(-10) === '#estimate';
+					}
+				}
+				document.addEventListener('click', function (e) {
+					var link = e.target && e.target.closest && e.target.closest('a[href]');
+					if (!link || !isEstimateHash(link.getAttribute('href'))) return;
+					var sec = document.getElementById('estimate');
+					if (!sec) return;
+					window.requestAnimationFrame(function () {
+						sec.classList.add('is-spotlight');
+						if (clearSpot) window.clearTimeout(clearSpot);
+						clearSpot = window.setTimeout(function () {
+							sec.classList.remove('is-spotlight');
+							clearSpot = null;
+						}, 12000);
+					});
+				});
+			})();
+		</script>
+	</body>
+</html>

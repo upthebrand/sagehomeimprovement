@@ -1,0 +1,135 @@
+---
+interface Props {
+	variant?: 'page' | 'sidebar';
+}
+
+const { variant = 'page' } = Astro.props;
+const isSidebar = variant === 'sidebar';
+
+const inputClass =
+	'mt-1 w-full rounded-lg border border-stone-300 bg-white px-3 py-2.5 text-charcoal shadow-sm outline-none transition placeholder:text-stone-400 focus:border-sage-500 focus:ring-2 focus:ring-sage-500/25';
+const labelClass = 'estimate-field-label block text-sm font-medium text-charcoal';
+---
+
+<section
+	id="estimate"
+	class:list={[
+		'scroll-mt-20',
+		isSidebar ? 'lg:scroll-mt-24' : 'px-4 py-10 sm:px-6',
+	]}
+	aria-labelledby="estimate-title"
+>
+	<div
+		class:list={[
+			'estimate-surface rounded-2xl border border-stone-200 bg-white p-5 shadow-sm sm:p-8',
+			!isSidebar && 'mx-auto max-w-lg sm:max-w-2xl',
+		]}
+	>
+			<h2 id="estimate-title" class="text-xl font-bold tracking-tight text-charcoal sm:text-2xl">
+				Schedule Your Free Estimate
+			</h2>
+			<p class="estimate-muted mt-1 text-sm text-stone-600 sm:text-base">Fast, friendly on-site visits</p>
+
+			<form
+				class="mt-6 space-y-4"
+				name="estimate"
+				method="POST"
+				data-netlify="true"
+				netlify-honeypot="bot-field"
+				action="/"
+			>
+				<input type="hidden" name="form-name" value="estimate" />
+
+				<p class="hidden" aria-hidden="true">
+					<label>
+						Do not fill this in if you are human:
+						<input name="bot-field" tabindex="-1" autocomplete="off" />
+					</label>
+				</p>
+
+				<div>
+					<label for="est-fullname" class={labelClass}>Full name</label>
+					<input
+						id="est-fullname"
+						name="fullname"
+						type="text"
+						required
+						autocomplete="name"
+						class={inputClass}
+					/>
+				</div>
+
+				<div>
+					<label for="est-phone" class={labelClass}>Phone</label>
+					<input
+						id="est-phone"
+						name="phone"
+						type="tel"
+						required
+						autocomplete="tel"
+						placeholder="555-0199"
+						class={inputClass}
+					/>
+				</div>
+
+				<div>
+					<label for="est-address" class={labelClass}>Service address</label>
+					<input
+						id="est-address"
+						name="service_address"
+						type="text"
+						required
+						autocomplete="street-address"
+						class={inputClass}
+					/>
+				</div>
+
+				<div>
+					<label for="est-date" class={labelClass}>Preferred date</label>
+					<input id="est-date" name="preferred_date" type="date" required class={inputClass} />
+					<p class="estimate-muted mt-1 text-xs text-stone-500">MM/DD/YYYY (browser date picker)</p>
+				</div>
+
+				<fieldset>
+					<legend class={labelClass}>Service type</legend>
+					<div class="mt-2 flex flex-wrap gap-4">
+						<label class="estimate-choice flex cursor-pointer items-center gap-2 text-sm text-charcoal">
+							<input
+								type="radio"
+								name="service_type"
+								value="window"
+								required
+								class="size-4 border-stone-300 text-sage-600 focus:ring-sage-500"
+							/>
+							Window
+						</label>
+						<label class="estimate-choice flex cursor-pointer items-center gap-2 text-sm text-charcoal">
+							<input
+								type="radio"
+								name="service_type"
+								value="door"
+								class="size-4 border-stone-300 text-sage-600 focus:ring-sage-500"
+							/>
+							Door
+						</label>
+						<label class="estimate-choice flex cursor-pointer items-center gap-2 text-sm text-charcoal">
+							<input
+								type="radio"
+								name="service_type"
+								value="consultation"
+								class="size-4 border-stone-300 text-sage-600 focus:ring-sage-500"
+							/>
+							Consultation
+						</label>
+					</div>
+				</fieldset>
+
+				<button
+					type="submit"
+					class="estimate-submit w-full rounded-lg bg-sage-600 py-3 text-base font-semibold text-white shadow-sm transition-colors duration-300 hover:bg-sage-700"
+				>
+					Get My Free Estimate
+				</button>
+			</form>
+	</div>
+</section>

@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+	--font-sans:
+		'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+	--color-sage-50: #f2f6f3;
+	--color-sage-100: #dfe9e2;
+	--color-sage-200: #bfd4c5;
+	--color-sage-500: #5c8a65;
+	--color-sage-600: #65A688;
+	--color-sage-700: #3d5f45;
+	--color-charcoal: #1f2937;
+}
+
+@layer base {
+	body {
+		@apply font-sans text-charcoal;
+	}
+}
+
+/* Estimate form spotlight (BaseLayout script adds `is-spotlight` on `#estimate`).
+   Must use !important: Tailwind utilities (bg-white, text-charcoal, etc.) live in a later layer and would win otherwise. */
+@layer components {
+	#estimate .estimate-surface {
+		transition:
+			transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1),
+			background-color 0.45s ease,
+			border-color 0.45s ease,
+			box-shadow 0.45s ease;
+	}
+}
+
+#estimate.is-spotlight {
+	overflow: visible;
+}
+
+#estimate.is-spotlight .estimate-surface {
+	background-color: var(--color-sage-600) !important;
+	border-color: rgb(255 255 255 / 0.28) !important;
+	box-shadow: 0 24px 48px -12px rgb(0 0 0 / 0.28);
+	transform: scale(1.025);
+}
+
+#estimate.is-spotlight .estimate-surface h2,
+#estimate.is-spotlight .estimate-field-label {
+	color: #fff !important;
+}
+
+#estimate.is-spotlight .estimate-muted {
+	color: rgb(255 255 255 / 0.88) !important;
+}
+
+#estimate.is-spotlight .estimate-surface .estimate-choice {
+	color: #fff !important;
+}
+
+#estimate.is-spotlight .estimate-surface .estimate-choice input[type='radio'] {
+	accent-color: #fff;
+	border-color: rgb(255 255 255 / 0.5) !important;
+}
+
+#estimate.is-spotlight .estimate-submit {
+	background-color: #fff !important;
+	color: var(--color-sage-700) !important;
+}
+
+#estimate.is-spotlight .estimate-submit:hover {
+	background-color: rgb(255 255 255 / 0.92) !important;
+	color: var(--color-sage-700) !important;
+}
+
+/* Closed <dialog> must stay hidden: Tailwind utilities (e.g. flex) can override UA display:none. */
+.site-modal-dialog:not([open]) {
+	display: none !important;
+}
+
+.site-modal-dialog[open] {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	width: 100vw;
+	max-width: none;
+	height: 100vh;
+	max-height: none;
+	margin: 0;
+	padding: 1rem;
+	border: 0;
+	background: transparent;
+}
+
+.site-modal-dialog::backdrop {
+	background: rgb(0 0 0 / 0.55);
+}

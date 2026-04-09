@@ -1,0 +1,95 @@
+---
+import BrandLeaf from './BrandLeaf.astro';
+import { siteName, sitePhone } from '../data/site';
+
+const nav = [
+	{ href: '#services', label: 'Services' },
+	{ href: '#trust', label: 'Why choose us' },
+	{ href: '#gallery', label: 'Gallery' },
+	{ href: '#reviews', label: 'Reviews' },
+	{ href: '#estimate', label: 'Free estimate' },
+] as const;
+
+const year = new Date().getFullYear();
+const creditUrl = 'https://upthebrand.com/';
+---
+
+<footer class="border-t border-sage-200/90 bg-sage-50 text-charcoal">
+	<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+		<div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
+			<div class="lg:col-span-5">
+				<a href="/" class="inline-flex items-center gap-2 text-charcoal">
+					<BrandLeaf widthPx={200} />
+				</a>
+				<p class="mt-4 max-w-sm text-sm leading-relaxed text-stone-600">
+					Premium window and door replacement — licensed, insured, and focused on lasting installs in the
+					Greater Baltimore area.
+				</p>
+			</div>
+
+			<div class="lg:col-span-4">
+				<p class="text-xs font-semibold uppercase tracking-wider text-sage-700/80">Quick links</p>
+				<ul class="mt-4 flex flex-col gap-2 text-sm font-medium">
+					{
+						nav.map(({ href, label }) => (
+							<li>
+								<a href={href} class="text-charcoal transition hover:text-sage-700">
+									{label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+
+			<div class="lg:col-span-3">
+				<p class="text-xs font-semibold uppercase tracking-wider text-sage-700/80">Contact</p>
+				<p class="mt-4">
+					<a
+						href={`tel:${sitePhone.tel}`}
+						class="text-base font-semibold text-sage-800 transition hover:text-sage-700"
+					>
+						{sitePhone.display}
+					</a>
+				</p>
+				<p class="mt-2 text-sm text-stone-600">Mon–Sat · 9:00 am – 9:00 EST</p>
+			</div>
+		</div>
+
+		<div
+			class="mt-12 flex flex-col gap-4 border-t border-sage-200/90 pt-8 text-sm text-stone-600 sm:flex-row sm:items-center sm:justify-between"
+		>
+			<p>
+				© {year} {siteName}. All rights reserved.
+				<span class="text-stone-500"> · </span>
+				<span class="text-stone-600">
+					Website Built By{' '}
+					<a
+						href={creditUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="font-semibold text-sage-800 underline decoration-sage-600/30 underline-offset-2 transition hover:text-sage-700 hover:decoration-sage-700/50"
+					>
+						Up The Brand
+					</a>
+				</span>
+			</p>
+			<p class="flex flex-wrap gap-x-4 gap-y-2">
+				<button
+					type="button"
+					class="cursor-pointer text-left transition hover:text-charcoal"
+					data-legal-open="privacy"
+				>
+					Privacy
+				</button>
+				<button
+					type="button"
+					class="cursor-pointer text-left transition hover:text-charcoal"
+					data-legal-open="terms"
+				>
+					Terms
+				</button>
+			</p>
+		</div>
+	</div>
+</footer>

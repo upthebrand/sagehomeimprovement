@@ -1,0 +1,37 @@
+---
+const quotes = [
+	{
+		text: 'Terry did a great job with my front door replacement. He was very professional, came prepared with a wealth of information and options. Most impressively, he was able to price match very credible competitors.',
+		attrib: 'Jordan Harvey, January, 2026',
+	},
+	{
+		text: 'I couldn’t be happier with my experience with Sage Home Improvements! From start to finish, the process of replacing 8 windows in my home was smooth, professional, and stress-free. The team was incredibly knowledgeable and took the time to answer all my questions, helping me choose the best options for my home and budget.',
+		attrib: 'Stephanie Turner, November 2026',
+	},
+	{
+		text: 'Terry and his team were so friendly. He came out and gave an estimate for a broken window upstairs. He was back the next day with a window that matched and it was installed before I knew it.',
+		attrib: 'Carol Emerson, April 2026',
+	},
+];
+---
+
+<section id="reviews" class="scroll-mt-20 px-4 py-10 sm:px-6" aria-labelledby="testimonials-title">
+	<div class="mx-auto max-w-lg sm:max-w-2xl lg:max-w-none">
+		<h2 id="testimonials-title" class="text-xl font-bold tracking-tight text-charcoal sm:text-2xl">
+			Customer reviews
+		</h2>
+		<p class="mt-2 text-sm text-stone-600 sm:text-base">What homeowners say after working with our crew.</p>
+		<ul class="mt-6 space-y-8">
+			{
+				quotes.map(({ text, attrib }) => (
+					<li>
+						<blockquote class="text-base font-bold leading-snug text-charcoal sm:text-lg">
+							“{text}”
+						</blockquote>
+						<cite class="mt-2 block text-sm not-italic text-stone-600">— {attrib}</cite>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>

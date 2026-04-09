@@ -1,0 +1,44 @@
+---
+import { galleryPhotos } from '../data/gallery';
+---
+
+<section id="gallery" class="scroll-mt-20 px-4 py-10 sm:px-6" aria-labelledby="gallery-title">
+	<div class="mx-auto max-w-lg sm:max-w-2xl lg:max-w-none">
+		<div class="flex items-end justify-between gap-4">
+			<h2 id="gallery-title" class="text-xl font-bold tracking-tight text-charcoal sm:text-2xl">
+				Project Gallery
+			</h2>
+			<a
+				href="#gallery"
+				class="text-sm font-semibold text-sage-600 underline-offset-2 hover:text-sage-700 hover:underline"
+			>
+				View all
+			</a>
+		</div>
+
+		<ul class="mt-5 grid grid-cols-2 gap-3 sm:gap-4">
+			{
+				galleryPhotos.map(({ src, alt }, index) => (
+					<li class="overflow-hidden rounded-xl bg-stone-100 ring-1 ring-stone-200/80">
+						<button
+							type="button"
+							class="group block w-full cursor-zoom-in text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage-600"
+							data-gallery-open={String(index)}
+							aria-label={`Open gallery: ${alt}`}
+						>
+							<img
+								src={src}
+								alt={alt}
+								width={800}
+								height={800}
+								class="aspect-square w-full object-cover transition group-hover:opacity-95"
+								loading="lazy"
+								decoding="async"
+							/>
+						</button>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>

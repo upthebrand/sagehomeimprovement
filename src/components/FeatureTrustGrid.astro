@@ -1,0 +1,81 @@
+---
+const items = [
+	{
+		title: 'Licensed & Insured',
+		icon: 'badge',
+	},
+	{
+		title: 'Energy Saving',
+		icon: 'bolt',
+	},
+	{
+		title: 'Warranties: Installation & Manufacturers',
+		icon: 'shield',
+	},
+	{
+		title: 'Debit & Credit Cards Accepted',
+		icon: 'coin',
+	},
+] as const;
+---
+
+<section id="trust" class="scroll-mt-20 px-4 py-8 sm:px-6" aria-label="Why choose us">
+	<div class="mx-auto max-w-lg sm:max-w-2xl lg:max-w-none">
+		<ul class="grid grid-cols-2 gap-3 sm:gap-4">
+			{
+				items.map(({ title, icon }) => (
+					<li class="flex flex-col items-center gap-2 rounded-xl border border-stone-200 bg-white p-4 text-center shadow-sm sm:p-5">
+						<span class="flex h-10 w-10 items-center justify-center text-sage-600">
+							{icon === 'badge' && (
+								<svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+									<path
+										d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+										stroke="currentColor"
+										stroke-width="1.5"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+								</svg>
+							)}
+							{icon === 'bolt' && (
+								<svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+									<path
+										d="M13 10V3L4 14h7v7l9-11h-7z"
+										stroke="currentColor"
+										stroke-width="1.5"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+								</svg>
+							)}
+							{icon === 'shield' && (
+								<svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+									<path
+										d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+										stroke="currentColor"
+										stroke-width="1.5"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+								</svg>
+							)}
+							{icon === 'coin' && (
+								<svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+									<path
+										d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2M3 9h18v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+										stroke="currentColor"
+										stroke-width="1.5"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+									<circle cx="16" cy="15" r="1.5" fill="currentColor" />
+								</svg>
+							)}
+						</span>
+						<span class="text-xs font-semibold leading-snug text-charcoal sm:text-sm">{title}</span>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>

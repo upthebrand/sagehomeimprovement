@@ -1,0 +1,56 @@
+---
+import { siteName, sitePhone } from '../data/site';
+
+const phoneDisplay = sitePhone.display;
+const phoneTel = sitePhone.tel;
+const address = '123 Riverbend Parkway, Riverbend, ST 00000';
+const mapsUrl =
+	'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('123 Riverbend Parkway Riverbend');
+---
+
+<section id="contact" class="scroll-mt-20 border-t border-stone-200 bg-stone-50 px-4 py-10 sm:px-6" aria-labelledby="contact-title">
+	<div class="mx-auto max-w-lg sm:max-w-2xl lg:max-w-none">
+		<h2 id="contact-title" class="sr-only">Contact</h2>
+		<div class="text-center">
+			<p class="text-lg font-bold text-charcoal">{siteName}</p>
+			<p class="mt-1 text-sm font-medium text-stone-600">Licensed & Insured</p>
+			<p class="mt-4">
+				<a href={`tel:${phoneTel}`} class="text-lg font-bold text-charcoal hover:text-sage-700">
+					{phoneDisplay}
+				</a>
+			</p>
+			<p class="mt-2 text-sm text-stone-600">Mon–Sat · 8:00–17:00</p>
+		</div>
+
+		<div class="mt-8 grid grid-cols-2 gap-3">
+			<a
+				href={`tel:${sitePhone.tel}`}
+				aria-label={`Call ${sitePhone.display}`}
+				class="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-charcoal bg-white px-2.5 py-2 text-sm font-semibold text-charcoal shadow-sm transition hover:bg-stone-50 sm:px-3"
+			>
+				<svg
+					class="size-5 shrink-0 text-charcoal"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					aria-hidden="true"
+				>
+					<path
+						d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+					/>
+				</svg>
+				<span class="hidden sm:inline">{sitePhone.display}</span>
+				<span class="sm:hidden">Call</span>
+			</a>
+			<a
+				href="#estimate"
+				class="inline-flex items-center justify-center rounded-lg bg-sage-600 px-3 py-3 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-sage-700"
+			>
+				Schedule Your In-Home Estimate
+			</a>
+		</div>
+	</div>
+</section>

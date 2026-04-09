@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import FeatureTrustGrid from '../components/FeatureTrustGrid.astro';
+import FinancingStrip from '../components/FinancingStrip.astro';
+import EstimateForm from '../components/EstimateForm.astro';
+import ProjectGallery from '../components/ProjectGallery.astro';
+import Testimonials from '../components/Testimonials.astro';
+import ContactSection from '../components/ContactSection.astro';
+import ServicesTiles from '../components/ServicesTiles.astro';
+---
+
+<BaseLayout title="Sage Home Improvements | Windows & Doors">
+	<div class="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-10 lg:px-8">
+		<div class="min-w-0 lg:col-span-7 lg:row-start-1">
+			<Hero />
+			<FeatureTrustGrid />
+			<ServicesTiles />
+		</div>
+
+		<aside
+			class="min-w-0 lg:col-span-5 lg:row-start-1 lg:row-span-2 lg:sticky lg:top-24 lg:self-start"
+		>
+			<div class="px-4 pb-10 pt-6 sm:px-6 lg:px-0 lg:pb-12 lg:pt-8">
+				<EstimateForm variant="sidebar" />
+			</div>
+		</aside>
+
+		<div class="min-w-0 lg:col-span-7 lg:row-start-2">
+			<ProjectGallery />
+			<Testimonials />
+			<ContactSection />
+		</div>
+	</div>
+</BaseLayout>

@@ -1,0 +1,79 @@
+---
+import BrandLeaf from './BrandLeaf.astro';
+import { sitePhone } from '../data/site';
+
+const nav = [
+	{ href: '#services', label: 'Services' },
+	{ href: '#gallery', label: 'Gallery' },
+	{ href: '#contact', label: 'Contact' },
+] as const;
+---
+
+<header
+	class="sticky top-0 z-20 border-b border-stone-200/90 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85"
+>
+	<div
+		class="mx-auto flex w-full max-w-7xl items-center justify-between gap-3 px-4 py-2.5 sm:px-6 md:grid md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-center md:justify-items-stretch md:gap-6 md:py-3 lg:px-8"
+	>
+		<a href="/" class="inline-flex shrink-0 items-center text-charcoal" aria-label="Sage Home Improvements home">
+			<BrandLeaf />
+		</a>
+
+		<nav
+			aria-label="Primary"
+			class="hidden min-w-0 items-center justify-center gap-6 text-md font-semibold text-stone-600 md:flex"
+		>
+			{
+				nav.map(({ href, label }) => (
+					<a href={href} class="whitespace-nowrap transition hover:text-charcoal">
+						{label}
+					</a>
+				))
+			}
+		</nav>
+
+		<div class="flex shrink-0 items-center justify-end gap-2 sm:gap-3 md:justify-self-end">
+			<a
+				href={`tel:${sitePhone.tel}`}
+				aria-label={`Call ${sitePhone.display}`}
+				class="inline-flex items-center gap-2 rounded-lg border-2 border-charcoal bg-white px-2.5 py-2 text-sm font-semibold text-charcoal shadow-sm transition hover:bg-stone-50 sm:px-3"
+			>
+				<svg
+					class="size-5 shrink-0 text-charcoal"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					aria-hidden="true"
+				>
+					<path
+						d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+					/>
+				</svg>
+				<span class="hidden sm:inline">{sitePhone.display}</span>
+				<span class="sm:hidden">Call</span>
+			</a>
+			<a
+				href="#estimate"
+				class="inline-flex items-center justify-center rounded-lg bg-sage-600 px-2.5 py-2 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-sage-700 sm:px-4 sm:text-base"
+			>
+				Free Estimates
+			</a>
+		</div>
+	</div>
+
+	<nav
+		aria-label="Primary mobile"
+		class="flex justify-center gap-5 border-t border-stone-100 px-4 py-2.5 text-xs font-semibold text-stone-600 md:hidden"
+	>
+		{
+			nav.map(({ href, label }) => (
+				<a href={href} class="whitespace-nowrap transition hover:text-charcoal">
+					{label}
+				</a>
+			))
+		}
+	</nav>
+</header>

@@ -1,0 +1,89 @@
+---
+const areas = [
+	{
+		heading: 'Baltimore City',
+		places: [
+			'Downtown',
+			'Federal Hill',
+			'Fells Point',
+			'Canton',
+			'Patterson Park',
+			'Locust Point',
+			'Mount Vernon',
+			'Charles Village',
+			'Hampden',
+			'Roland Park',
+			'Belair-Edison',
+			'Lauraville',
+		],
+	},
+	{
+		heading: 'Baltimore County',
+		places: [
+			'Perry Hall',
+			'Parkville',
+			'Nottingham',
+			'White Marsh',
+			'Rosedale',
+			'Middle River',
+			'Towson',
+			'Catonsville',
+			'Essex',
+			'Dundalk',
+			'Woodlawn',
+			'Pikesville',
+			'Owings Mills',
+			'Reisterstown',
+		],
+	},
+	{
+		heading: 'Harford County',
+		places: [
+			'Bel Air',
+			'Aberdeen',
+			'Havre de Grace',
+			'Fallston',
+			'Forest Hill',
+			'Edgewood',
+			'Joppa',
+			'Abingdon',
+			'Jarrettsville',
+			'Churchville',
+		],
+	},
+] as const;
+---
+
+<section
+	id="service-areas"
+	class="scroll-mt-20 px-4 py-10 sm:px-6"
+	aria-labelledby="service-areas-title"
+>
+	<div class="rounded-2xl bg-[#803B1F] px-5 py-8 text-white shadow-sm sm:px-8 sm:py-10">
+		<div class="mx-auto max-w-lg sm:max-w-2xl lg:max-w-none">
+			<h2 id="service-areas-title" class="text-xl font-bold tracking-tight sm:text-2xl">
+				Service Areas
+			</h2>
+			<p class="mt-2 max-w-3xl text-sm leading-relaxed text-white/90 sm:text-base">
+				Based near Perry Hall and serving the Greater Baltimore Area. If you’re nearby and don’t see your
+				neighborhood listed, reach out. Chances are Sage can help.
+			</p>
+
+			<div class="mt-6 grid gap-4 sm:gap-5">
+				{
+					areas.map(({ heading, places }) => (
+						<div class="rounded-xl border border-white/15 bg-white/5 p-5">
+							<h3 class="text-base font-semibold">{heading}</h3>
+							<ul class="mt-3 flex flex-wrap gap-x-3 gap-y-2 text-sm text-white/90">
+								{places.map((p) => (
+									<li class="rounded-full bg-white/10 px-3 py-1">{p}</li>
+								))}
+							</ul>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</section>
+

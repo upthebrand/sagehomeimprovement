@@ -92,3 +92,22 @@
 .site-modal-dialog::backdrop {
 	background: rgb(0 0 0 / 0.55);
 }
+
+/* Gallery modal layout tweaks (tighter padding, no title). */
+#site-modal[data-mode='gallery'] #site-modal-title {
+	display: none !important;
+}
+
+#site-modal[data-mode='gallery'] #site-modal-body {
+	margin-top: 0 !important;
+}
+
+#site-modal[data-mode='gallery'] .site-modal-panel {
+	padding: 1rem !important;
+}
+
+@media (min-width: 640px) {
+	#site-modal[data-mode='gallery'] .site-modal-panel {
+		padding: 1.25rem !important;
+	}
+}

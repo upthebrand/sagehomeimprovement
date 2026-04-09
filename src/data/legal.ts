@@ -1,8 +1,8 @@
 /** Replace with your attorney-approved copy. Shown inside the site modal. */
 export const privacyParagraphs = [
 	'This placeholder privacy policy describes how Sage Home Improvements collects, uses, and protects information you submit through this website (for example, estimate requests). Replace this text with your final policy before launch.',
-	'We may use contact details you provide to respond to requests, schedule visits, and follow up about services. We do not sell your personal information.',
-	'For questions about this policy, contact us using the phone number shown in the site footer.',
+	'Trust is important. Sage Home Improvements may use contact details you provide to respond to requests, schedule visits, and follow up about services. Sage Home Improvements does not sell your personal information.',
+	'For questions about this policy, contact Sage Home Improvements using the phone number shown in the site footer.',
 ];
 
 export const termsParagraphs = [

@@ -4,19 +4,26 @@ import { sitePhone } from '../data/site';
 
 const nav = [
 	{ href: '#services', label: 'Services' },
+	{ href: '#service-areas', label: 'Service Areas' },
 	{ href: '#gallery', label: 'Gallery' },
 	{ href: '#contact', label: 'Contact' },
 ] as const;
 ---
 
 <header
-	class="sticky top-0 z-20 border-b border-stone-200/90 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85"
+	id="site-header"
+	class="sticky top-0 z-20 border-b border-stone-200/90 bg-white/95 backdrop-blur transition-transform duration-300 will-change-transform supports-[backdrop-filter]:bg-white/85"
 >
 	<div
-		class="mx-auto flex w-full max-w-7xl items-center justify-between gap-3 px-4 py-2.5 sm:px-6 md:grid md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-center md:justify-items-stretch md:gap-6 md:py-3 lg:px-8"
+		class="mx-auto flex w-full max-w-7xl flex-col items-center gap-3 px-4 py-2.5 sm:flex-row sm:justify-between sm:px-6 md:grid md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-center md:justify-items-stretch md:gap-6 md:py-3 lg:px-8"
 	>
-		<a href="/" class="inline-flex shrink-0 items-center text-charcoal" aria-label="Sage Home Improvements home">
-			<BrandLeaf />
+		<a href="/" class="inline-flex shrink-0 items-center justify-center text-charcoal" aria-label="Sage Home Improvements home">
+			<span class="sm:hidden">
+				<BrandLeaf widthPx={140} />
+			</span>
+			<span class="hidden sm:block">
+				<BrandLeaf widthPx={220} />
+			</span>
 		</a>
 
 		<nav
@@ -32,11 +39,11 @@ const nav = [
 			}
 		</nav>
 
-		<div class="flex shrink-0 items-center justify-end gap-2 sm:gap-3 md:justify-self-end">
+		<div class="flex w-full shrink-0 flex-col items-stretch gap-2 sm:w-auto sm:flex-row sm:items-center sm:justify-end sm:gap-3 md:justify-self-end">
 			<a
 				href={`tel:${sitePhone.tel}`}
 				aria-label={`Call ${sitePhone.display}`}
-				class="inline-flex items-center gap-2 rounded-lg border-2 border-charcoal bg-white px-2.5 py-2 text-sm font-semibold text-charcoal shadow-sm transition hover:bg-stone-50 sm:px-3"
+				class="inline-flex w-full items-center justify-center gap-2 rounded-lg border-2 border-charcoal bg-white px-3 py-3 text-center text-sm font-semibold text-charcoal shadow-sm transition hover:bg-stone-50 sm:w-auto sm:px-3 sm:py-2"
 			>
 				<svg
 					class="size-5 shrink-0 text-charcoal"
@@ -53,13 +60,15 @@ const nav = [
 					/>
 				</svg>
 				<span class="hidden sm:inline">{sitePhone.display}</span>
-				<span class="sm:hidden">Call</span>
+				<span class="sm:hidden">Call Now</span>
 			</a>
 			<a
 				href="#estimate"
-				class="inline-flex items-center justify-center rounded-lg bg-sage-600 px-2.5 py-2 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-sage-700 sm:px-4 sm:text-base"
+				class="inline-flex w-full items-center justify-center rounded-lg bg-sage-600 px-3 py-3 text-center text-sm font-semibold leading-tight text-white shadow-sm transition hover:bg-sage-700 sm:w-auto sm:px-4 sm:py-2 sm:text-base"
 			>
-				Free Estimates
+				<span>
+					Free<br class="sm:hidden" />Estimates
+				</span>
 			</a>
 		</div>
 	</div>
@@ -77,3 +86,44 @@ const nav = [
 		}
 	</nav>
 </header>
+
+<script is:inline>
+	(function () {
+		var header = document.getElementById('site-header');
+		if (!header) return;
+
+		var mq = window.matchMedia('(max-width: 767px)');
+		var lastY = window.scrollY || 0;
+		var hidden = false;
+
+		function setHidden(next) {
+			if (hidden === next) return;
+			hidden = next;
+			header.style.transform = hidden ? 'translateY(-110%)' : 'translateY(0)';
+		}
+
+		function onScroll() {
+			if (!mq.matches) {
+				setHidden(false);
+				lastY = window.scrollY || 0;
+				return;
+			}
+
+			var y = window.scrollY || 0;
+			var dy = y - lastY;
+			lastY = y;
+
+			if (y < 12) {
+				setHidden(false);
+				return;
+			}
+
+			if (dy > 6) setHidden(true);
+			else if (dy < -6) setHidden(false);
+		}
+
+		window.addEventListener('scroll', onScroll, { passive: true });
+		mq.addEventListener('change', onScroll);
+		onScroll();
+	})();
+</script>

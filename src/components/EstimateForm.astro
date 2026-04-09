@@ -26,9 +26,11 @@ const labelClass = 'estimate-field-label block text-sm font-medium text-charcoal
 		]}
 	>
 			<h2 id="estimate-title" class="text-xl font-bold tracking-tight text-charcoal sm:text-2xl">
-				Schedule Your Free Estimate
+				Let’s Set Up Your Free Estimate
 			</h2>
-			<p class="estimate-muted mt-1 text-sm text-stone-600 sm:text-base">Fast, friendly on-site visits</p>
+			<p class="estimate-muted mt-1 text-sm text-stone-600 sm:text-base">
+				Quick call, quick visit, zero pressure
+			</p>
 
 			<form
 				class="mt-6 space-y-4"
@@ -86,40 +88,50 @@ const labelClass = 'estimate-field-label block text-sm font-medium text-charcoal
 
 				<div>
 					<label for="est-date" class={labelClass}>Preferred date</label>
-					<input id="est-date" name="preferred_date" type="date" required class={inputClass} />
-					<p class="estimate-muted mt-1 text-xs text-stone-500">MM/DD/YYYY (browser date picker)</p>
+					<input id="est-date" name="preferred_date" type="date" class={inputClass} />
+					<p class="estimate-muted mt-1 text-xs text-stone-500">
+						Optional (use the browser date picker)
+					</p>
 				</div>
 
 				<fieldset>
-					<legend class={labelClass}>Service type</legend>
+					<legend class={labelClass}>Service type (select all that apply)</legend>
 					<div class="mt-2 flex flex-wrap gap-4">
 						<label class="estimate-choice flex cursor-pointer items-center gap-2 text-sm text-charcoal">
 							<input
-								type="radio"
-								name="service_type"
-								value="window"
-								required
+								type="checkbox"
+								name="service_types"
+								value="Windows"
 								class="size-4 border-stone-300 text-sage-600 focus:ring-sage-500"
 							/>
-							Window
+							Windows
 						</label>
 						<label class="estimate-choice flex cursor-pointer items-center gap-2 text-sm text-charcoal">
 							<input
-								type="radio"
-								name="service_type"
-								value="door"
+								type="checkbox"
+								name="service_types"
+								value="Entry Doors"
 								class="size-4 border-stone-300 text-sage-600 focus:ring-sage-500"
 							/>
-							Door
+							Entry Doors
 						</label>
 						<label class="estimate-choice flex cursor-pointer items-center gap-2 text-sm text-charcoal">
 							<input
-								type="radio"
-								name="service_type"
-								value="consultation"
+								type="checkbox"
+								name="service_types"
+								value="Storm Doors"
 								class="size-4 border-stone-300 text-sage-600 focus:ring-sage-500"
 							/>
-							Consultation
+							Storm Doors
+						</label>
+						<label class="estimate-choice flex cursor-pointer items-center gap-2 text-sm text-charcoal">
+							<input
+								type="checkbox"
+								name="service_types"
+								value="Other"
+								class="size-4 border-stone-300 text-sage-600 focus:ring-sage-500"
+							/>
+							Other
 						</label>
 					</div>
 				</fieldset>
@@ -130,6 +142,31 @@ const labelClass = 'estimate-field-label block text-sm font-medium text-charcoal
 				>
 					Get My Free Estimate
 				</button>
+				<p class="estimate-muted text-pretty text-center text-xs leading-relaxed text-stone-500">
+					Trust is important. Sage will never sell your data.{' '}
+					<button
+						type="button"
+						class="font-semibold text-sage-700 underline decoration-sage-600/30 underline-offset-2 transition hover:text-sage-800 hover:decoration-sage-700/50"
+						data-legal-open="privacy"
+					>
+						Privacy policy
+					</button>
+					.
+				</p>
 			</form>
 	</div>
 </section>
+
+<script is:inline>
+	(function () {
+		var el = document.getElementById('est-date');
+		if (!el || !(el instanceof HTMLInputElement)) return;
+		if (el.value) return;
+
+		var d = new Date();
+		var y = String(d.getFullYear());
+		var m = String(d.getMonth() + 1).padStart(2, '0');
+		var day = String(d.getDate()).padStart(2, '0');
+		el.value = y + '-' + m + '-' + day;
+	})();
+</script>

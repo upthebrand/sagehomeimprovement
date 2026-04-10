@@ -5,10 +5,10 @@ import { galleryPhotos } from '../data/gallery';
 
 <div class="hidden" aria-hidden="true">
 	<div id="tpl-success-root" class="space-y-3 text-center">
-		<p class="text-xl font-bold text-charcoal">Thank you!</p>
+		<p class="text-xl font-bold text-charcoal">Thank You</p>
 		<p class="text-sm leading-relaxed text-stone-600">
-			Sage received the estimate request and will be in touch soon. If anything is needed right away, call the number
-			in the footer.
+			The request went through. Someone from Sage will reach out soon. For anything urgent, use the phone number in
+			the footer.
 		</p>
 	</div>
 	<div id="tpl-privacy-root" class="space-y-3 text-sm leading-relaxed text-stone-600">
@@ -281,7 +281,7 @@ import { galleryPhotos } from '../data/gallery';
 					});
 					if (res.ok) {
 						estimateForm.reset();
-						titleEl.textContent = 'Request received';
+						titleEl.textContent = 'Thank You';
 						bodyEl.innerHTML = '';
 						bodyEl.appendChild(cloneTpl('tpl-success-root'));
 						navEl.classList.add('hidden');

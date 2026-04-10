@@ -30,6 +30,7 @@ const ogImageUrl =
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+		<GoogleTagManager placement="head" />
 		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="shortcut icon" href="/favicon.ico" />
@@ -60,7 +61,6 @@ const ogImageUrl =
 		<meta name="twitter:description" content={description} />
 		{ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
 		{site && canonicalURL && <SchemaOrg siteUrl={site} pageUrl={canonicalURL} title={title} description={description} />}
-		<GoogleTagManager placement="head" />
 		<slot name="head" />
 	</head>
 	<body class="min-h-dvh bg-white antialiased">

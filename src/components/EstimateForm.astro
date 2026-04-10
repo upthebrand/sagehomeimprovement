@@ -49,6 +49,12 @@ const labelClass = 'estimate-field-label block text-sm font-medium text-charcoal
 					</label>
 				</p>
 
+				<p
+					id="est-form-error"
+					class="hidden rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700"
+					role="alert"
+				></p>
+
 				<div>
 					<label for="est-fullname" class={labelClass}>Full name</label>
 					<input
@@ -62,6 +68,9 @@ const labelClass = 'estimate-field-label block text-sm font-medium text-charcoal
 				</div>
 
 				<div>
+					<p id="est-contact-hint" class="estimate-muted text-xs text-stone-500">
+						Add a phone number, an email, or both. At least one is required so Sage can reply.
+					</p>
 					<p
 						id="est-contact-error"
 						class="mt-2 hidden text-sm font-medium text-red-600"
@@ -102,7 +111,6 @@ const labelClass = 'estimate-field-label block text-sm font-medium text-charcoal
 						id="est-address"
 						name="service_address"
 						type="text"
-						required
 						autocomplete="street-address"
 						class={inputClass}
 					/>

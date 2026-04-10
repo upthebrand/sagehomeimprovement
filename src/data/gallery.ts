@@ -36,10 +36,6 @@ export const galleryPhotos = [
 		alt: 'Living room with white-framed sliding glass patio door and two white vertical windows on gray walls',
 	},
 	{
-		src: '/images/wood-grain-arched-entry-door-storm-door-open.jpg',
-		alt: 'Dark wood-grain arched entry door with open black storm door on stone exterior',
-	},
-	{
 		src: '/images/white-three-pane-slider-window-burgundy-shutters.jpg',
 		alt: 'Large white three-pane horizontal sliding window with burgundy shutters on cream lap siding',
 	},

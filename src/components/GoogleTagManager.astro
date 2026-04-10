@@ -4,7 +4,12 @@ interface Props {
 }
 
 const { placement } = Astro.props;
-const containerId = import.meta.env.PUBLIC_GTM_CONTAINER_ID?.trim();
+const containerId = (
+	process.env.PUBLIC_GTM_CONTAINER_ID ??
+	process.env.GTM_CONTAINER_ID ??
+	import.meta.env.PUBLIC_GTM_CONTAINER_ID ??
+	''
+).trim();
 ---
 
 {

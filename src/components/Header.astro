@@ -15,9 +15,13 @@ const nav = [
 	class="sticky top-0 z-20 border-b border-stone-200/90 bg-white/95 backdrop-blur transition-transform duration-300 will-change-transform supports-[backdrop-filter]:bg-white/85"
 >
 	<div
-		class="mx-auto flex w-full max-w-7xl flex-col items-center gap-3 px-4 py-2.5 sm:flex-row sm:justify-between sm:px-6 md:grid md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-center md:justify-items-stretch md:gap-6 md:py-3 lg:px-8"
+		class="mx-auto flex w-full max-w-7xl flex-col items-center gap-3 px-4 py-2.5 sm:flex-row sm:justify-between sm:px-6 md:flex md:flex-wrap md:items-center md:gap-x-6 md:gap-y-3 md:py-3 lg:grid lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center lg:justify-items-stretch lg:gap-6 lg:px-8"
 	>
-		<a href="/" class="inline-flex shrink-0 items-center justify-center text-charcoal" aria-label="Sage Home Improvements home">
+		<a
+			href="/"
+			class="inline-flex shrink-0 items-center justify-center text-charcoal md:order-1"
+			aria-label="Sage Home Improvements home"
+		>
 			<span class="sm:hidden">
 				<BrandLeaf widthPx={140} />
 			</span>
@@ -28,7 +32,7 @@ const nav = [
 
 		<nav
 			aria-label="Primary"
-			class="hidden min-w-0 items-center justify-center gap-6 text-md font-semibold text-stone-600 md:flex"
+			class="hidden min-w-0 items-center justify-center gap-6 text-md font-semibold text-stone-600 md:order-3 md:flex md:w-full md:justify-center lg:order-none lg:w-auto"
 		>
 			{
 				nav.map(({ href, label }) => (
@@ -39,7 +43,7 @@ const nav = [
 			}
 		</nav>
 
-		<div class="flex w-full shrink-0 flex-col items-stretch gap-2 sm:w-auto sm:flex-row sm:items-center sm:justify-end sm:gap-3 md:justify-self-end">
+		<div class="flex w-full shrink-0 flex-col items-stretch gap-2 sm:w-auto sm:flex-row sm:items-center sm:justify-end sm:gap-3 md:order-2 md:ml-auto lg:order-none lg:ml-0 lg:justify-self-end">
 			<a
 				href={`tel:${sitePhone.tel}`}
 				aria-label={`Call ${sitePhone.display}`}

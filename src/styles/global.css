@@ -69,6 +69,22 @@
 	color: var(--color-sage-700) !important;
 }
 
+#estimate.is-spotlight .estimate-sticky-actions {
+	background-color: var(--color-sage-600) !important;
+	border-top-color: rgb(255 255 255 / 0.28) !important;
+	box-shadow: 0 -12px 28px -14px rgb(0 0 0 / 0.22);
+}
+
+#estimate.is-spotlight .estimate-sticky-actions .estimate-privacy-link {
+	color: #fff !important;
+	text-decoration-color: rgb(255 255 255 / 0.45) !important;
+}
+
+#estimate.is-spotlight .estimate-sticky-actions .estimate-privacy-link:hover {
+	color: rgb(255 255 255 / 0.92) !important;
+	text-decoration-color: rgb(255 255 255 / 0.65) !important;
+}
+
 /* Closed <dialog> must stay hidden: Tailwind utilities (e.g. flex) can override UA display:none. */
 .site-modal-dialog:not([open]) {
 	display: none !important;

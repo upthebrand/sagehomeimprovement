@@ -1,0 +1,79 @@
+---
+import { siteEmail, siteName, sitePhoneE164 } from '../data/site';
+
+/**
+ * JSON-LD @graph for homepage / local business SEO.
+ * Requires Astro `site` (see astro.config.mjs + PUBLIC_SITE_URL on Netlify).
+ */
+interface Props {
+	siteUrl: URL;
+	pageUrl: URL;
+	title: string;
+	description: string;
+}
+
+const { siteUrl, pageUrl, title, description } = Astro.props;
+
+const origin = siteUrl.origin;
+const orgId = `${origin}/#organization`;
+const websiteId = `${origin}/#website`;
+const webpageId = `${pageUrl.href}#webpage`;
+
+const defaultOgImage = new URL('/apple-touch-icon.png', origin).href;
+
+const graph = [
+	{
+		'@type': 'HomeAndConstructionBusiness',
+		'@id': orgId,
+		name: siteName,
+		description,
+		url: origin,
+		telephone: sitePhoneE164,
+		email: siteEmail,
+		image: [defaultOgImage, new URL('/web-app-manifest-512x512.png', origin).href],
+		priceRange: '$$',
+		areaServed: [
+			{ '@type': 'City', name: 'Baltimore', containedInPlace: { '@type': 'State', name: 'Maryland' } },
+			{ '@type': 'AdministrativeArea', name: 'Baltimore County' },
+			{ '@type': 'AdministrativeArea', name: 'Harford County' },
+		],
+		openingHoursSpecification: [
+			{
+				'@type': 'OpeningHoursSpecification',
+				dayOfWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+				opens: '09:00',
+				closes: '21:00',
+			},
+		],
+		slogan: 'Make the WISE choice',
+	},
+	{
+		'@type': 'WebSite',
+		'@id': websiteId,
+		url: origin,
+		name: siteName,
+		inLanguage: 'en-US',
+		publisher: { '@id': orgId },
+	},
+	{
+		'@type': 'WebPage',
+		'@id': webpageId,
+		url: pageUrl.href,
+		name: title,
+		description,
+		isPartOf: { '@id': websiteId },
+		about: { '@id': orgId },
+		primaryImageOfPage: {
+			'@type': 'ImageObject',
+			url: defaultOgImage,
+		},
+	},
+];
+
+const schema = {
+	'@context': 'https://schema.org',
+	'@graph': graph,
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -178,8 +178,59 @@ import { galleryPhotos } from '../data/gallery';
 
 		const estimateForm = document.querySelector('form[name="estimate"]');
 		if (estimateForm instanceof HTMLFormElement) {
+			const contactErrorEl = document.getElementById('est-contact-error');
+			const phoneEl = estimateForm.querySelector('#est-phone');
+			const emailEl = estimateForm.querySelector('#est-email');
+
+			function clearContactError() {
+				if (contactErrorEl) {
+					contactErrorEl.classList.add('hidden');
+					contactErrorEl.textContent = '';
+				}
+				if (emailEl instanceof HTMLInputElement) emailEl.setCustomValidity('');
+			}
+
+			function isValidEmailFormat(value) {
+				var s = value.trim();
+				if (!s) return true;
+				return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+			}
+
+			[phoneEl, emailEl].forEach((el) => {
+				el?.addEventListener('input', clearContactError);
+			});
+
 			estimateForm.addEventListener('submit', async (e) => {
 				e.preventDefault();
+				clearContactError();
+
+				var phone = phoneEl instanceof HTMLInputElement ? phoneEl.value.trim() : '';
+				var email = emailEl instanceof HTMLInputElement ? emailEl.value.trim() : '';
+
+				if (!phone && !email) {
+					if (contactErrorEl) {
+						contactErrorEl.textContent = 'Add a phone number or an email so Sage can reach you.';
+						contactErrorEl.classList.remove('hidden');
+					}
+					phoneEl instanceof HTMLInputElement ? phoneEl.focus() : emailEl?.focus();
+					return;
+				}
+
+				if (email) {
+					if (emailEl instanceof HTMLInputElement) {
+						if (!emailEl.checkValidity()) {
+							emailEl.reportValidity();
+							return;
+						}
+						if (!isValidEmailFormat(email)) {
+							emailEl.setCustomValidity('Enter a valid email address.');
+							emailEl.reportValidity();
+							emailEl.setCustomValidity('');
+							return;
+						}
+					}
+				}
+
 				const fd = new FormData(estimateForm);
 				const params = new URLSearchParams();
 				for (const pair of fd.entries()) {

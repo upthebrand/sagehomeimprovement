@@ -1,49 +1,21 @@
 ---
 import { Image } from 'astro:assets';
 
-const posterSrc =
-	'https://placehold.co/600x400';
-
-const videoA = import.meta.env.PUBLIC_HERO_VIDEO_A?.trim() ?? '';
-const videoB = import.meta.env.PUBLIC_HERO_VIDEO_B?.trim() ?? '';
-const showVideo = Boolean(videoA);
-const runAb = Boolean(videoA && videoB);
+const posterSrc = 'https://placehold.co/600x400';
 ---
 
 <section class="px-4 pb-6 pt-4 sm:px-6" aria-labelledby="hero-title">
 	<div class="mx-auto w-full max-w-lg sm:max-w-2xl lg:mx-0 lg:max-w-none">
 		<div class="overflow-hidden rounded-xl bg-stone-100 shadow-sm ring-1 ring-stone-200/80">
-			{
-				showVideo ? (
-					<div class="relative aspect-[4/3] w-full bg-stone-200">
-						<video
-							id="hero-video"
-							class="h-full w-full object-cover"
-							poster={posterSrc}
-							playsinline
-							muted
-							autoplay
-							loop
-							controls
-							preload="metadata"
-							aria-label="Introduction video for Sage Home Improvements"
-						>
-							<source id="hero-video-source" src="" type="video/mp4" />
-							Your browser does not support the video tag.
-						</video>
-					</div>
-				) : (
-					<Image
-						src={posterSrc}
-						alt="Professional installer fitting a new window"
-						width={1200}
-						height={900}
-						class="aspect-[4/3] w-full object-cover"
-						loading="eager"
-						fetchpriority="high"
-					/>
-				)
-			}
+			<div style="position: relative; padding-top: 74.79224376731301%;">
+			<iframe
+				src="https://customer-ymxetwu7s7t40xzl.cloudflarestream.com/58661dca28151fa3daaa01c712dd2fdb/iframe?preload=true&autoplay=true&poster=https%3A%2F%2Fcustomer-ymxetwu7s7t40xzl.cloudflarestream.com%2F58661dca28151fa3daaa01c712dd2fdb%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
+				loading="lazy"
+				style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
+				allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+				allowfullscreen="true"
+			></iframe>
+			</div>
 		</div>
 
 		<p class="mt-5 text-sm font-semibold tracking-wide text-stone-600 sm:text-base">
@@ -70,55 +42,3 @@ const runAb = Boolean(videoA && videoB);
 		</div>
 	</div>
 </section>
-
-{
-	showVideo && (
-		<script is:inline define:vars={{ videoA, videoB, runAb }}>
-			(function () {
-				var chosen = 'a';
-				if (runAb) {
-					var stored = sessionStorage.getItem('hero_vid_ab');
-					if (stored === 'a' || stored === 'b') {
-						chosen = stored;
-					} else {
-						chosen = Math.random() < 0.5 ? 'a' : 'b';
-						sessionStorage.setItem('hero_vid_ab', chosen);
-					}
-				}
-				var url = chosen === 'b' ? videoB : videoA;
-				var source = document.getElementById('hero-video-source');
-				var video = document.getElementById('hero-video');
-				if (source) source.setAttribute('src', url);
-				if (video) {
-					video.dataset.variant = chosen;
-					video.load();
-				}
-				document.documentElement.setAttribute('data-hero-video-variant', chosen);
-
-				function pushTags() {
-					window.dataLayer = window.dataLayer || [];
-					window.dataLayer.push({
-						event: 'hero_video_variant',
-						hero_video_variant: chosen,
-					});
-					if (typeof window.clarity === 'function') {
-						window.clarity('set', 'hero_video', chosen);
-					}
-				}
-
-				if (typeof window.clarity === 'function') {
-					pushTags();
-				} else {
-					var attempts = 0;
-					var id = window.setInterval(function () {
-						attempts += 1;
-						if (typeof window.clarity === 'function' || attempts > 40) {
-							window.clearInterval(id);
-							if (typeof window.clarity === 'function') pushTags();
-						}
-					}, 100);
-				}
-			})();
-		</script>
-	)
-}

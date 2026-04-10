@@ -179,20 +179,28 @@ import { galleryPhotos } from '../data/gallery';
 		const estimateForm = document.querySelector('form[name="estimate"]');
 		if (estimateForm instanceof HTMLFormElement) {
 			const formErrorEl = document.getElementById('est-form-error');
-			const contactErrorEl = document.getElementById('est-contact-error');
 			const nameEl = estimateForm.querySelector('#est-fullname');
 			const phoneEl = estimateForm.querySelector('#est-phone');
 			const emailEl = estimateForm.querySelector('#est-email');
+
+			const errorClasses = ['border-red-500', 'focus:border-red-500', 'focus:ring-red-500/25'];
+
+			function setFieldError(el) {
+				if (el instanceof HTMLInputElement) el.classList.add(...errorClasses);
+			}
+
+			function clearFieldError(el) {
+				if (el instanceof HTMLInputElement) el.classList.remove(...errorClasses);
+			}
 
 			function clearErrors() {
 				if (formErrorEl) {
 					formErrorEl.classList.add('hidden');
 					formErrorEl.textContent = '';
 				}
-				if (contactErrorEl) {
-					contactErrorEl.classList.add('hidden');
-					contactErrorEl.textContent = '';
-				}
+				clearFieldError(nameEl);
+				clearFieldError(phoneEl);
+				clearFieldError(emailEl);
 				if (emailEl instanceof HTMLInputElement) emailEl.setCustomValidity('');
 			}
 
@@ -203,7 +211,9 @@ import { galleryPhotos } from '../data/gallery';
 			}
 
 			[nameEl, phoneEl, emailEl].forEach((el) => {
-				el?.addEventListener('input', clearErrors);
+				el?.addEventListener('input', () => {
+					clearErrors();
+				});
 			});
 
 			estimateForm.addEventListener('submit', async (e) => {
@@ -219,10 +229,8 @@ import { galleryPhotos } from '../data/gallery';
 
 				if (!phone && !email) {
 					missing.push('Phone number or email');
-					if (contactErrorEl) {
-						contactErrorEl.textContent = 'Add a phone number or an email so Sage can reach you.';
-						contactErrorEl.classList.remove('hidden');
-					}
+					setFieldError(phoneEl);
+					setFieldError(emailEl);
 				}
 
 				if (missing.length) {
@@ -232,18 +240,25 @@ import { galleryPhotos } from '../data/gallery';
 						formErrorEl.classList.remove('hidden');
 						formErrorEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
 					}
-					if (!fullname && nameEl instanceof HTMLInputElement) nameEl.focus();
-					else if (!phone && !email && phoneEl instanceof HTMLInputElement) phoneEl.focus();
+					if (!fullname) {
+						setFieldError(nameEl);
+						if (nameEl instanceof HTMLInputElement) nameEl.focus();
+					} else if (!phone && !email) {
+						if (phoneEl instanceof HTMLInputElement) phoneEl.focus();
+						else if (emailEl instanceof HTMLInputElement) emailEl.focus();
+					}
 					return;
 				}
 
 				if (email) {
 					if (emailEl instanceof HTMLInputElement) {
 						if (!emailEl.checkValidity()) {
+							setFieldError(emailEl);
 							emailEl.reportValidity();
 							return;
 						}
 						if (!isValidEmailFormat(email)) {
+							setFieldError(emailEl);
 							emailEl.setCustomValidity('Enter a valid email address.');
 							emailEl.reportValidity();
 							emailEl.setCustomValidity('');

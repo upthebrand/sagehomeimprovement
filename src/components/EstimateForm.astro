@@ -68,14 +68,6 @@ const labelClass = 'estimate-field-label block text-sm font-medium text-charcoal
 				</div>
 
 				<div>
-					<p id="est-contact-hint" class="estimate-muted text-xs text-stone-500">
-						Add a phone number, an email, or both. At least one is required so Sage can reply.
-					</p>
-					<p
-						id="est-contact-error"
-						class="mt-2 hidden text-sm font-medium text-red-600"
-						role="alert"
-					></p>
 					<div class="mt-3 space-y-4">
 						<div>
 							<label for="est-phone" class={labelClass}>Phone (optional if email is added)</label>
@@ -86,7 +78,6 @@ const labelClass = 'estimate-field-label block text-sm font-medium text-charcoal
 								autocomplete="tel"
 								placeholder="410-555-0123"
 								class={inputClass}
-								aria-describedby="est-contact-hint"
 							/>
 						</div>
 						<div>
@@ -99,7 +90,6 @@ const labelClass = 'estimate-field-label block text-sm font-medium text-charcoal
 								autocomplete="email"
 								placeholder="you@example.com"
 								class={inputClass}
-								aria-describedby="est-contact-hint"
 							/>
 						</div>
 					</div>

@@ -1,5 +1,11 @@
 export const siteName = 'Sage Home Improvements';
 
+/**
+ * GTM container ID (`GTM-…`). Used when `PUBLIC_GTM_CONTAINER_ID` / `GTM_CONTAINER_ID` are unset at build time.
+ * Netlify env vars still override this when set (see `GoogleTagManager.astro`).
+ */
+export const gtmContainerId = 'GTM-KMNK6CCC';
+
 /** Public contact email (also used in schema.org). */
 export const siteEmail = 'terry@sagehomeimprove.com';
 

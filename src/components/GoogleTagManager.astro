@@ -1,15 +1,18 @@
 ---
+import { gtmContainerId as gtmFromSite } from '../data/site';
+
 interface Props {
 	placement: 'head' | 'body';
 }
 
 const { placement } = Astro.props;
-const containerId = (
+const fromEnv = (
 	process.env.PUBLIC_GTM_CONTAINER_ID ??
 	process.env.GTM_CONTAINER_ID ??
 	import.meta.env.PUBLIC_GTM_CONTAINER_ID ??
 	''
 ).trim();
+const containerId = fromEnv || String(gtmFromSite ?? '').trim();
 ---
 
 {

@@ -95,25 +95,6 @@ const labelClass = 'estimate-field-label block text-sm font-medium text-charcoal
 					</div>
 				</div>
 
-				<div>
-					<label for="est-address" class={labelClass}>Service address</label>
-					<input
-						id="est-address"
-						name="service_address"
-						type="text"
-						autocomplete="street-address"
-						class={inputClass}
-					/>
-				</div>
-
-				<div>
-					<label for="est-date" class={labelClass}>Preferred date</label>
-					<input id="est-date" name="preferred_date" type="date" class={inputClass} />
-					<p class="estimate-muted mt-1 text-xs text-stone-500">
-						Optional (use the browser date picker)
-					</p>
-				</div>
-
 				<fieldset>
 					<legend class={labelClass}>Service type (select all that apply)</legend>
 					<div class="mt-2 flex flex-wrap gap-4">
@@ -181,17 +162,3 @@ const labelClass = 'estimate-field-label block text-sm font-medium text-charcoal
 			</form>
 	</div>
 </section>
-
-<script is:inline>
-	(function () {
-		var el = document.getElementById('est-date');
-		if (!el || !(el instanceof HTMLInputElement)) return;
-		if (el.value) return;
-
-		var d = new Date();
-		var y = String(d.getFullYear());
-		var m = String(d.getMonth() + 1).padStart(2, '0');
-		var day = String(d.getDate()).padStart(2, '0');
-		el.value = y + '-' + m + '-' + day;
-	})();
-</script>

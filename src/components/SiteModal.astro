@@ -182,6 +182,7 @@ import { galleryPhotos } from '../data/gallery';
 			const nameEl = estimateForm.querySelector('#est-fullname');
 			const phoneEl = estimateForm.querySelector('#est-phone');
 			const emailEl = estimateForm.querySelector('#est-email');
+			const thankYouUrl = estimateForm.getAttribute('action') || '/thank-you/';
 
 			const errorClasses = ['border-red-500', 'focus:border-red-500', 'focus:ring-red-500/25'];
 
@@ -280,13 +281,8 @@ import { galleryPhotos } from '../data/gallery';
 						body,
 					});
 					if (res.ok) {
-						estimateForm.reset();
-						titleEl.textContent = 'Thank You';
-						bodyEl.innerHTML = '';
-						bodyEl.appendChild(cloneTpl('tpl-success-root'));
-						navEl.classList.add('hidden');
-						dialog.showModal();
-						document.body.style.overflow = 'hidden';
+						// Hard navigation is the most reliable way to ensure URL changes.
+						window.location.assign(thankYouUrl);
 					} else {
 						titleEl.textContent = 'Something went wrong';
 						bodyEl.innerHTML =

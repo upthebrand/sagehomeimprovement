@@ -1,0 +1,26 @@
+---
+import { financingHomeHref } from '../data/financing';
+
+interface Props {
+	heading?: string;
+}
+
+const { heading = 'Prefer to spread the cost?' } = Astro.props;
+---
+
+<aside
+	class="mt-8 rounded-xl border border-sage-200 bg-sage-50/80 p-5 text-sm leading-relaxed text-stone-700"
+	aria-label="Financing"
+>
+	<p class="font-semibold text-charcoal">{heading}</p>
+	<p class="mt-1">
+		Sage now offers financing through Enhancify. Rates depend on a credit review; many homeowners qualify for
+		flexible plans.
+	</p>
+	<a
+		href={financingHomeHref}
+		class="mt-3 inline-flex font-semibold text-sage-700 underline decoration-sage-600/40 underline-offset-2 hover:text-sage-800"
+	>
+		See financing options
+	</a>
+</aside>

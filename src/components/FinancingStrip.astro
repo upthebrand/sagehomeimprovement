@@ -1,14 +1,19 @@
-<section
-	id="financing"
-	class="scroll-mt-20 border-y border-sage-200/80 bg-sage-50 px-4 py-4 text-center sm:px-6"
-	aria-label="Financing"
+---
+import { financingAnchor } from '../data/financing';
+---
+
+<a
+	href={financingAnchor}
+	class="group block scroll-mt-20 border-y border-sage-300/60 bg-sage-600 px-4 py-3.5 text-center transition hover:bg-sage-700 sm:px-6"
+	aria-label="Learn about financing options"
 >
-	<div class="mx-auto max-w-lg text-sm leading-relaxed text-sage-900 sm:max-w-2xl lg:max-w-none sm:text-base">
-		<strong class="font-semibold">Flexible financing</strong>
-		. Low monthly plans available. Ask your estimator about options that fit your budget, or{' '}
-		<a href="#estimate" class="font-semibold text-sage-700 underline decoration-sage-600/40 underline-offset-2 hover:text-sage-800">
-			schedule a free visit
-		</a>
-		.
-	</div>
-</section>
+	<p class="mx-auto max-w-3xl text-sm font-semibold leading-snug text-white sm:text-base">
+		<span class="mr-1.5 inline-block rounded-full bg-white/20 px-2 py-0.5 text-xs uppercase tracking-wide">
+			New
+		</span>
+		Financing now available — flexible monthly plans after a quick credit review.
+		<span class="ml-1 underline decoration-white/50 underline-offset-2 group-hover:decoration-white">
+			Learn more
+		</span>
+	</p>
+</a>
